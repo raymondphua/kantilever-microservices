@@ -1,0 +1,12 @@
+discovery:
+  build: .
+  dockerfile: discovery-server/Dockerfile
+  ports:
+  - "11140:11140"
+gateway:
+  build: .
+  dockerfile: api-gateway/Dockerfile
+  ports:
+  - "11130:11130"
+  links:
+  - discovery

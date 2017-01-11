@@ -1,9 +1,17 @@
+#Configuration discovery server
+spring:
+  application:
+    name: discovery
+
 server:
-  port: 8888
-  display-name: eureka-discovery
+    port: 11140
+
 eureka:
   instance:
     hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false
+    service-url:
+     defaultZone: http://localhost:11140/eureka/
+
