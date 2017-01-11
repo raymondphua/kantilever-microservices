@@ -32,4 +32,8 @@
 		</dependency>
 	</dependencies>
 
+    <build>
+        <finalName>discovery-server</finalName>
+    </build>
+
 </project>

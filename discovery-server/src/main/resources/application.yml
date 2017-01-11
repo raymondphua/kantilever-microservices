@@ -1,6 +1,11 @@
+#Configuration discovery server
+spring:
+  application:
+    name: discovery
+
 server:
-  port: 11140
-  display-name: eureka-discovery
+    port: 11140
+
 eureka:
   instance:
     hostname: localhost

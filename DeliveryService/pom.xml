@@ -14,6 +14,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 		<dependency>
@@ -30,5 +34,10 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>delivery-service</finalName>
+	</build>
+
 
 </project>

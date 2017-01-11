@@ -12,10 +12,10 @@
 	<artifactId>customerservice</artifactId>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-eureka-client</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -30,4 +30,9 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>customer-service</finalName>
+	</build>
+
 </project>

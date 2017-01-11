@@ -13,9 +13,11 @@ ribbon:
 
 server:
   port: 11130
+
 eureka:
   client:
     register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:11140/eureka
   instance:

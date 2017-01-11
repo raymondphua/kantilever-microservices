@@ -40,7 +40,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-netflix-eureka-client</artifactId>
-			<version>1.2.4.BUILD-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<finalName>api-gateway</finalName>
+	</build>
+
 </project>
