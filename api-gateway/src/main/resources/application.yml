@@ -4,17 +4,20 @@ zuul:
     zuulservice:
       path: /self/**
       serviceId: zuul-service
+    catalogservice:
+      path: /catalog/**
+      serviceId: catalog-service
 ribbon:
   eureka:
     enabled: true
 
 server:
-  port: 8080
+  port: 11130
 eureka:
   client:
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8888/eureka
+      defaultZone: http://localhost:11140/eureka
   instance:
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true
