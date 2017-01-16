@@ -20,7 +20,7 @@ public class Order {
 
     @Id
     private String id;
-    private double shoppingFee;
+    private double shippingFee;
     private double totalPrice;
     private Customer customer;
     private List<Product> orderedProducts;

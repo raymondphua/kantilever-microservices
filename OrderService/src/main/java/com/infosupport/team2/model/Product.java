@@ -22,9 +22,5 @@ public class Product {
     private String description;
     private String imgUrl;
     private double price;
-    private LocalDate availableFrom;
-    private LocalDate availableTo;
     private String supplierProductId;
-    private String cName;
-    //categories + brands ook toevoegen? (moet dan ook weer in model komen)
 }
