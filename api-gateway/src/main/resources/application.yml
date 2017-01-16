@@ -10,6 +10,9 @@ zuul:
     orderservice:
       path: /orderservice/**
       serviceId: order-service
+    orderprocessservice:
+      path: /orderprocessservice/**
+      serviceId: order-process-service
 ribbon:
   eureka:
     enabled: true
