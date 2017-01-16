@@ -7,6 +7,9 @@ zuul:
     catalogservice:
       path: /catalog/**
       serviceId: catalog-service
+    orderservice:
+      path: /orderservice/**
+      serviceId: order-service
 ribbon:
   eureka:
     enabled: true
