@@ -25,5 +25,6 @@ public class Order {
     private Customer customer;
     private List<Product> orderedProducts;
     private Address deliveryAddress;
+    private Address invoiceAddress;
     private Status status;
 }
