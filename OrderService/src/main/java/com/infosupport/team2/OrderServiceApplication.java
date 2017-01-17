@@ -11,13 +11,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class OrderServiceApplication {
+@EnableResourceServer
+public class OrderServiceApplication extends ResourceServerConfigurerAdapter {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
@@ -64,5 +69,14 @@ public class OrderServiceApplication {
 			System.out.println("All orders added");
 			orderRepository.findAll().forEach(System.out::println);
 		};
+	}
+
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		http
+				.authorizeRequests()
+				.antMatchers("/oauth/**", "/oauth", "/", "/**").permitAll().anyRequest().authenticated()
+				.and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 }

@@ -17,6 +17,17 @@ ribbon:
 server:
   port: 11130
 
+security:
+  oauth2:
+    client:
+      client-id: kantilever
+      client-secret: kantiSecret
+      access-token-uri: http://localhost:11150/oauth/check_token
+    resource:
+      token-info-uri: http://localhost:11150/oauth/check_token
+  basic:
+    enabled: false
+
 eureka:
   client:
     register-with-eureka: true
