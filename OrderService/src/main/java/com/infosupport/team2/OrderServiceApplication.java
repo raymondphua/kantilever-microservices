@@ -33,14 +33,12 @@ public class OrderServiceApplication {
 			customer1.setName("Jan Meesters");
 			customer1.setPhone("0612345678");
 			customer1.setEmail("jan.meesters@gmail.com");
-			customer1.setAddress(new Address("Test straat 13", "Breda", "1234AB"));
 
 			Customer customer2 = new Customer();
 			customer2.setId("2");
 			customer2.setName("Piet Piraat");
 			customer2.setPhone("0687654321");
 			customer2.setEmail("piet.piraat@gmail.com");
-			customer2.setAddress(new Address("Piratenstraat 9", "Groningen", "1122AA"));
 
 			List<Product> orderedProducts1 = new ArrayList<>();
 			orderedProducts1.add(new Product("1", 2L, "Road-150 Red, 62", "This bike is ridden by race winners. Developed with the Adventure Works Cycles professional race team, it has a extremely light heat-treated aluminum frame, and steering that allows precision control.", "http://res.cloudinary.com/kantilever/image/upload/v1484171992/bike3_vhdpgz.png", 1366, "LJ-0192-S", 1));
@@ -52,13 +50,15 @@ public class OrderServiceApplication {
 
 			Address afleverAdres1 = new Address("Leerpark 120", "Dordrecht", "1111AA");
 
-			orderRepository.save(new Order("1", 3.50, 100, customer1, orderedProducts1, customer1.getAddress(), Status.BESTELD));
-			orderRepository.save(new Order("2", 3.50, 200, customer1, orderedProducts1, afleverAdres1, Status.AFGELEVERD));
-			orderRepository.save(new Order("3", 5, 70, customer2, orderedProducts2, customer2.getAddress(), Status.BESTELD));
-			orderRepository.save(new Order("4", 7.50, 125, customer2, orderedProducts2, afleverAdres1, Status.AFGELEVERD));
+			Address factuurAdres1 = new Address("Kruisboog 42","Veenendaal","4444ZZ");
+
+			orderRepository.save(new Order("1", 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD));
+			orderRepository.save(new Order("2", 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
+			orderRepository.save(new Order("3", 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.BESTELD));
+			orderRepository.save(new Order("4", 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
 
 			for (int i = 5; i < 10; i++) {
-				orderRepository.save(new Order("" + i, 3.50, 524, customer1, orderedProducts1, customer1.getAddress(), Status.AFGELEVERD));
+				orderRepository.save(new Order("" + i, 3.50, 524, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
 			}
 
 			System.out.println("All orders added");

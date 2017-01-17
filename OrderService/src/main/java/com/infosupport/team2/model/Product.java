@@ -1,6 +1,7 @@
 package com.infosupport.team2.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import org.springframework.data.annotation.Id;
  * Created by Raymond Phua on 16-1-2017.
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
