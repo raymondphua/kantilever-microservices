@@ -50,19 +50,19 @@ public class AuthorizationTest {
 
         testUser = new User();
 
-        testUser.setEmail("henk@gmail.com");
+        testUser.setEmail("pieter@hotmail.com");
         testUser.setPassword(passwordEncoder.encode("henkie"));
         testUser.setId("12");
         userService.save(testUser);
 
         authClient = new ClientDetail();
-        authClient.setId("12");
+        authClient.setId("18");
         authClient.setClientId(authClientId);
         authClient.setResourceIds(new HashSet<>(Arrays.asList("rest_api")));
         authClient.setClientSecret(passwordEncoder.encode(authClientSecret));
         authClient.setRefreshTokenValiditySeconds(4500);
         authClient.setAccessTokenValiditySeconds(4500);
-        authClient.setAuthorities(new HashSet<>(Arrays.asList("trust", "read", "write")));
+        authClient.setAuthorities(new HashSet<>(Arrays.asList("trust", "write")));
         authClient.setAuthorizedGrantTypes(new HashSet<>(Arrays.asList("client_credentials", "authorization_code", "implicit", "password", "refresh_token")));
         authClient.setScope(new HashSet<>(Arrays.asList("trust", "read", "write")));
         authClient.setSecretRequired(true);

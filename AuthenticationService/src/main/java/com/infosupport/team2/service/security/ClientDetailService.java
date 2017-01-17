@@ -116,6 +116,10 @@ public class ClientDetailService implements ClientDetailsService, ClientRegistra
         return clientDetailsRepository.save(authClient);
     }
 
+    public ClientDetail insert(ClientDetail authClient){
+        return clientDetailsRepository.insert(authClient);
+    }
+
     public void deleteAll() {
         clientDetailsRepository.deleteAll();
     }
