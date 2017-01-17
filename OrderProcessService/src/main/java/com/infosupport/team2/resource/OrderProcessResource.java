@@ -3,8 +3,8 @@ package com.infosupport.team2.resource;
 import com.infosupport.team2.enums.Status;
 import com.infosupport.team2.model.Order;
 import com.infosupport.team2.model.OrderProcessModel;
-import com.infosupport.team2.model.Product;
 import com.infosupport.team2.repository.OrderRepository;
+import com.infosupport.team2.service.OrderProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class OrderProcessResource {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        double totalPrice = calcPrice(order);
+        double totalPrice = OrderProcessService.calcTotalPrice(order);
         order.setStatus(Status.BESTELD);
         order.setTotalPrice(totalPrice);
 
@@ -50,17 +50,5 @@ public class OrderProcessResource {
                 .path("/{id}")
                 .buildAndExpand(result.getId()).toUri();
         return ResponseEntity.noContent().location(location).build();
-    }
-
-    private double calcPrice(Order order) {
-        double totalPrice = 0;
-
-        for(Product p : order.getOrderedProducts()) {
-            totalPrice += p.getPrice() * p.getQuantity();
-        }
-
-        totalPrice += order.getShippingFee();
-
-        return totalPrice;
     }
 }
