@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -28,43 +27,43 @@ import java.util.List;
 @EnableMongoRepositories("com.infosupport.team2.repository")
 @ComponentScan
 @ImportResource({"classpath*:spring-security-oauth2.xml"})
-public class AuthServerMain{
+public class AuthServerMain {
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args) {
-		// TODO code application logic here
-		ApplicationContext context = SpringApplication.run(AuthServerMain.class, args);
-	}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(AuthServerMain.class, args);
+    }
 
-	@Autowired
-	private CustomMongoDBConvertor customMongoDBConvertor;
-	@Autowired
-	private MongoDbFactory mongoDbFactory;
+    @Autowired
+    private CustomMongoDBConvertor customMongoDBConvertor;
+    @Autowired
+    private MongoDbFactory mongoDbFactory;
 
-	@Bean
-	public CustomConversions customConversions() {
-		List<Converter<?, ?>> converterList = new ArrayList<>();
-		converterList.add(customMongoDBConvertor);
-		return new CustomConversions(converterList);
-	}
+    @Bean
+    public CustomConversions customConversions() {
+        List<Converter<?, ?>> converterList = new ArrayList<>();
+        converterList.add(customMongoDBConvertor);
+        return new CustomConversions(converterList);
+    }
 
-	@Bean
-	public MappingMongoConverter mongoConverter() throws Exception {
-		MongoMappingContext mappingContext = new MongoMappingContext();
-		DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
-		MappingMongoConverter mongoConverter = new MappingMongoConverter(dbRefResolver, mappingContext);
-		mongoConverter.setCustomConversions(customConversions());
-		return mongoConverter;
-	}
+    @Bean
+    public MappingMongoConverter mongoConverter() throws Exception {
+        MongoMappingContext mappingContext = new MongoMappingContext();
+        DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
+        MappingMongoConverter mongoConverter = new MappingMongoConverter(dbRefResolver, mappingContext);
+        mongoConverter.setCustomConversions(customConversions());
+        return mongoConverter;
+    }
 
-	@Bean(autowire = Autowire.BY_NAME, name = "mongoTemplate")
-	public MongoTemplate customMongoTemplate() {
-		try {
-			return new MongoTemplate(mongoDbFactory, mongoConverter()); // a mongotemplate with custom convertor
-		} catch (Exception e) {
-		}
-		return null;
-	}
+    @Bean(autowire = Autowire.BY_NAME, name = "mongoTemplate")
+    public MongoTemplate customMongoTemplate() {
+        try {
+            return new MongoTemplate(mongoDbFactory, mongoConverter()); // a mongotemplate with custom convertor
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 }
