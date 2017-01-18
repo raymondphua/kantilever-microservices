@@ -8,15 +8,21 @@ import com.infosupport.team2.model.Product;
 import com.infosupport.team2.repository.OrderRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
 @EnableEurekaClient
+@EnableResourceServer
+@Configuration
+@EnableAutoConfiguration
 public class OrderServiceApplication {
 
 	public static void main(String[] args) {
