@@ -28,7 +28,7 @@ import java.util.List;
 @EnableMongoRepositories("com.infosupport.team2.repository")
 @ComponentScan
 @ImportResource({"classpath*:spring-security-oauth2.xml"})
-public class AuthServerMain {
+public class AuthServerMain{
 
 	/**
 	 * @param args the command line arguments
@@ -67,5 +67,4 @@ public class AuthServerMain {
 		}
 		return null;
 	}
-
 }
