@@ -1,5 +1,6 @@
 package com.infosupport.team2.serviceCaller;
 
+import com.infosupport.team2.model.Customer;
 import com.infosupport.team2.model.Order;
 import com.infosupport.team2.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 public class OrderServiceCaller {
 
     private static final String PRODUCT_URL = "http://catalog-service/products";
-    private static final String CUSTOMER_URL = "http://localhost:11130/customerservice/customers";
+    private static final String CUSTOMER_URL = "http://customer-service/customers";
 
     @Autowired
     RestTemplate restTemplate;
@@ -29,6 +30,9 @@ public class OrderServiceCaller {
             products.add(found);
         });
         order.setOrderedProducts(products);
+
+        Customer customer = restTemplate.getForObject(CUSTOMER_URL + "/{id}", Customer.class, order.getCustomer().getId());
+        order.setCustomer(customer);
 
         return order;
     }
