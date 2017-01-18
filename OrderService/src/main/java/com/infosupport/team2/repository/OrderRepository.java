@@ -7,7 +7,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * Created by Raymond Phua on 16-1-2017.
  */
-public interface OrderRepository extends MongoRepository<Order, String>, CustomOrderRepository {
+public interface OrderRepository extends MongoRepository<Order, Long>, CustomOrderRepository {
     public Order findById(String id);
     public Order findByStatus(Status status);
+    public Order findTopByOrderByIdDesc();
 }

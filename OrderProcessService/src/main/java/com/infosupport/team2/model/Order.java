@@ -5,23 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Raymond Phua on 16-1-2017.
+ * Created by Raymond Phua on 17-1-2017.
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "orders")
-public class Order {
+public class Order implements Serializable {
 
-    @Id
-    private Long id;
+    private String id;
     private double shippingFee;
     private double totalPrice;
     private Customer customer;
