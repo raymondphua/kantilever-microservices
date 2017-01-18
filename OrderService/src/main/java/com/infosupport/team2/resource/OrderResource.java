@@ -1,12 +1,15 @@
 package com.infosupport.team2.resource;
 
-import com.infosupport.team2.enums.Status;
 import com.infosupport.team2.model.Order;
+import com.infosupport.team2.model.ProcessOrderModel;
 import com.infosupport.team2.model.Product;
-import com.infosupport.team2.repository.OrderRepository;
+import com.infosupport.team2.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -19,34 +22,43 @@ import java.util.Map;
 public class OrderResource {
 
     @Autowired
-    private OrderRepository orderRepo;
+    private OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Order> allOrdersWithStatus(@RequestParam Map<String,String> allRequestParams) {
-        return orderRepo.filterOrders(allRequestParams);
+        return orderService.getOrders(allRequestParams);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Order getOrder(@PathVariable String id) {
-        return orderRepo.findOne(id);
+        return orderService.findOne(id);
     }
 
     @RequestMapping(value = "/{id}/products", method = RequestMethod.GET)
     public List<Product> getProductsFromOrder(@PathVariable String id) {
-        return orderRepo.findOne(id).getOrderedProducts();
+        return orderService.getProductsFromOrderId(id);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Order createOrder(@RequestBody Order order) {
-        order.setStatus(Status.BESTELD);
-        return orderRepo.save(order);
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+        Order result = orderService.createOrder(order);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/orders/{id}")
+                .buildAndExpand(result.getId()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Order updateStatusFromOrder(@PathVariable String id, @RequestBody Status status) {
-        Order foundOrder = orderRepo.findOne(id);
-        foundOrder.setStatus(status);
+    public ResponseEntity<Order> updateStatusFromOrder(@PathVariable String id, @RequestBody ProcessOrderModel processOrderModel) {
 
-        return orderRepo.save(foundOrder);
+        Order result = orderService.updateOrderStatus(id, processOrderModel);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/orders/{id}")
+                .buildAndExpand(result.getId()).toUri();
+        return ResponseEntity.noContent().location(location).build();
     }
 }

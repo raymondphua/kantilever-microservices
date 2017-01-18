@@ -13,7 +13,6 @@
 		<module>OrderService</module>
 		<module>DeliveryService</module>
 		<module>CustomerService</module>
-		<module>OrderProcessService</module>
 		<module>api-gateway</module>
 		<module>discovery-server</module>
 	</modules>
