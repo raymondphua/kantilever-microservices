@@ -42,7 +42,7 @@ public class OrderService {
         return result;
     }
 
-    public Order updateOrderStatus(String id, ProcessOrderModel processOrderModel) {
+    public Order updateOrderStatus(Long id, ProcessOrderModel processOrderModel) {
 
         Order foundOrder = orderRepo.findOne(id);
         foundOrder.setStatus(Status.valueOf(processOrderModel.getStatus().toUpperCase()));
@@ -56,11 +56,11 @@ public class OrderService {
         return orderRepo.filterOrders(allRequestParams);
     }
 
-    public Order findOne(String id) {
+    public Order findOne(Long id) {
         return orderRepo.findOne(id);
     }
 
-    public List<Product> getProductsFromOrderId(String id) {
+    public List<Product> getProductsFromOrderId(Long id) {
         return orderRepo.findOne(id).getOrderedProducts();
     }
 

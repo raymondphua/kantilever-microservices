@@ -30,12 +30,12 @@ public class OrderResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Order getOrder(@PathVariable String id) {
+    public Order getOrder(@PathVariable Long id) {
         return orderService.findOne(id);
     }
 
     @RequestMapping(value = "/{id}/products", method = RequestMethod.GET)
-    public List<Product> getProductsFromOrder(@PathVariable String id) {
+    public List<Product> getProductsFromOrder(@PathVariable Long id) {
         return orderService.getProductsFromOrderId(id);
     }
 
@@ -51,7 +51,7 @@ public class OrderResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Order> updateStatusFromOrder(@PathVariable String id, @RequestBody ProcessOrderModel processOrderModel) {
+    public ResponseEntity<Order> updateStatusFromOrder(@PathVariable Long id, @RequestBody ProcessOrderModel processOrderModel) {
 
         Order result = orderService.updateOrderStatus(id, processOrderModel);
 
