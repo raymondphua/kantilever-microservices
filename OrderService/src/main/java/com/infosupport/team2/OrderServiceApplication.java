@@ -8,14 +8,12 @@ import com.infosupport.team2.model.Product;
 import com.infosupport.team2.repository.OrderRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,9 @@ import java.util.List;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableResourceServer
-public class OrderServiceApplication extends ResourceServerConfigurerAdapter {
+@Configuration
+@EnableAutoConfiguration
+public class OrderServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
@@ -70,15 +70,5 @@ public class OrderServiceApplication extends ResourceServerConfigurerAdapter {
 			System.out.println("All orders added");
 			orderRepository.findAll().forEach(System.out::println);
 		};
-	}
-
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http
-				.authorizeRequests()
-				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.antMatchers("/oauth/**", "/oauth").permitAll().anyRequest().authenticated()
-				.and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 }
