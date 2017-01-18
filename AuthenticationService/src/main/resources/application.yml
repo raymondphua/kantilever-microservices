@@ -1,0 +1,15 @@
+server:
+  port: 11150
+security:
+  basic:
+    enabled: false
+
+spring:
+  data:
+    mongodb:
+      host: 192.168.99.100
+      port: 27017
+      database: sso-auth-server
+
+app.client.id: kantilever
+app.client.secret: kantiSecret
