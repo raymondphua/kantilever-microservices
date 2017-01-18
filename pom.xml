@@ -15,6 +15,7 @@
 		<module>CustomerService</module>
 		<module>api-gateway</module>
 		<module>discovery-server</module>
+		<module>AuthenticationService</module>
 	</modules>
 
 	<parent>
