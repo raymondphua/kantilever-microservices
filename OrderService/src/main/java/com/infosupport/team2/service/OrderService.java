@@ -62,4 +62,12 @@ public class OrderService {
     public List<Product> getProductsFromOrderId(String id) {
         return orderRepo.findOne(id).getOrderedProducts();
     }
+
+    public String incrementId() {
+        Order latestOrder = orderRepo.findTopByOrderByIdDesc();
+
+        latestOrder = null;
+
+        return "";
+    }
 }
