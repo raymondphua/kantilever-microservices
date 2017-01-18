@@ -34,6 +34,7 @@ public class OrderService {
         double totalPrice = PriceValidator.calcTotalPrice(order);
         validatedOrder.setTotalPrice(totalPrice);
         validatedOrder.setStatus(Status.BESTELD);
+        validatedOrder.setId(incrementId());
 
         //save in repo
         Order result = orderRepo.save(validatedOrder);
@@ -63,11 +64,12 @@ public class OrderService {
         return orderRepo.findOne(id).getOrderedProducts();
     }
 
-    public String incrementId() {
+    private Long incrementId() {
         Order latestOrder = orderRepo.findTopByOrderByIdDesc();
+        //Integer id = Integer.valueOf(latestOrder.getId());
+        Long id = latestOrder.getId();
+        id++;
 
-        latestOrder = null;
-
-        return "";
+        return id;
     }
 }

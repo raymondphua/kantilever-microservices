@@ -26,7 +26,6 @@ public class OrderResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Order> allOrdersWithStatus(@RequestParam Map<String,String> allRequestParams) {
-        orderService.incrementId();
         return orderService.getOrders(allRequestParams);
     }
 

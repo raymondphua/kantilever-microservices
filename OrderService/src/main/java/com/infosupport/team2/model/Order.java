@@ -21,7 +21,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    private String id;
+    private Long id;
     private double shippingFee;
     private double totalPrice;
     private Customer customer;
