@@ -13,4 +13,5 @@ import java.io.Serializable;
 public class ProcessOrderModel implements Serializable {
 
     private String status;
+    private String date;
 }

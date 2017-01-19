@@ -17,7 +17,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -66,13 +70,28 @@ public class OrderServiceApplication {
 
 			Address factuurAdres1 = new Address("Kruisboog 42","Veenendaal","4444ZZ");
 
-			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD));
-			orderRepository.save(new Order(2L, 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
-			orderRepository.save(new Order(3L, 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.BESTELD));
-			orderRepository.save(new Order(4L, 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+			Date date1 = null;
+			try {
+				date1 = formatter.parse("2017-01-20 00:00");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			Date date2 = null;
+			try {
+				date2 = formatter.parse("2017-01-22 00:00");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD, date2));
+			orderRepository.save(new Order(2L, 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date2));
+			orderRepository.save(new Order(3L, 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.BESTELD, date1));
+			orderRepository.save(new Order(4L, 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date1));
 
 			for (int i = 5; i < 10; i++) {
-				orderRepository.save(new Order((long) i, 3.50, 524, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
+				orderRepository.save(new Order((long) i, 3.50, 524, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date1));
 			}
 
 			System.out.println("All orders added");
