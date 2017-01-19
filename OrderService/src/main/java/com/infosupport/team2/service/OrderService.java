@@ -10,6 +10,7 @@ import com.infosupport.team2.util.PriceValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +63,13 @@ public class OrderService {
 
     public List<Product> getProductsFromOrderId(Long id) {
         return orderRepo.findOne(id).getOrderedProducts();
+    }
+
+    public List<Order> getOrdersAfterDate(Date date) {
+        if (date == null) {
+            return null;
+        }
+        return orderRepo.findByOrderDateAfter(date);
     }
 
     private Long incrementId() {

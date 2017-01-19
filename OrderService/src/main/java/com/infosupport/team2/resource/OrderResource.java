@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -60,5 +64,17 @@ public class OrderResource {
                 .path("/orders/{id}")
                 .buildAndExpand(result.getId()).toUri();
         return ResponseEntity.noContent().location(location).build();
+    }
+
+    @RequestMapping(value = "/date", method = RequestMethod.POST)
+    public List<Order> getOrderFromDateTime(@RequestBody ProcessOrderModel processOrderModel) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = null;
+        try {
+            date = formatter.parse(processOrderModel.getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return orderService.getOrdersAfterDate(date);
     }
 }
