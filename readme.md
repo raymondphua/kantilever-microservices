@@ -55,7 +55,35 @@ Not available yet.
 
 Installation
 ------------
-Not available yet.
+How to run the microservice. Follow this pattern.
+
+
+    Run the discovery-service. 
+        wait for the service to start.
+    
+    Run the docker mongo database with the following command: 
+        docker run -p 27017:27017 --name kantilever -d mongo
+    
+    Run the api-gateway. 
+        wait for the service to start.        
+        
+    Run the catalog-service. 
+        wait for the service to start.
+    
+    Run the customer-service. 
+            wait for the service to start.
+        
+    Run the authentication-server. 
+        wait for the service to start.
+            
+    Run the order-service.
+        wait for the service to start.
+   
+    Run the docker webapp with the following command:
+        docker pull martidono/webapp
+        docker run -p 3000:3000 --name webapp -d docker.io/martidono/webapp
+
+
 
 License
 ---------
