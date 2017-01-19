@@ -10,10 +10,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,12 @@ public class OrderServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrderServiceApplication.class, args);
+	}
+
+	@Bean
+	@LoadBalanced
+	RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 
 	@Bean
@@ -58,13 +66,13 @@ public class OrderServiceApplication {
 
 			Address factuurAdres1 = new Address("Kruisboog 42","Veenendaal","4444ZZ");
 
-			orderRepository.save(new Order("1", 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD));
-			orderRepository.save(new Order("2", 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
-			orderRepository.save(new Order("3", 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.BESTELD));
-			orderRepository.save(new Order("4", 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
+			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD));
+			orderRepository.save(new Order(2L, 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
+			orderRepository.save(new Order(3L, 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.BESTELD));
+			orderRepository.save(new Order(4L, 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
 
 			for (int i = 5; i < 10; i++) {
-				orderRepository.save(new Order("" + i, 3.50, 524, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
+				orderRepository.save(new Order((long) i, 3.50, 524, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD));
 			}
 
 			System.out.println("All orders added");
