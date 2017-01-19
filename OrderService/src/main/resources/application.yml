@@ -1,6 +1,9 @@
 spring:
   application:
     name: order-service
+  data:
+    mongodb:
+      #host: 192.168.99.100
 
 server:
   port: 11113
@@ -13,3 +16,11 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true
+security:
+  oauth2:
+    client:
+      client-id: kantilever
+      client-secret: kantiSecret
+      access-token-uri: http://localhost:11150/oauth/check_token
+    resource:
+      token-info-uri: http://localhost:11150/oauth/check_token

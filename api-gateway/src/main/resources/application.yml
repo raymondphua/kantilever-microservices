@@ -7,12 +7,32 @@ zuul:
     catalogservice:
       path: /catalog/**
       serviceId: catalog-service
+    orderservice:
+      path: /orderservice/**
+      serviceId: order-service
+    customerservice:
+      path: /customerservice/**
+      serviceId: customer-service
+    orderprocessservice:
+      path: /orderprocessservice/**
+      serviceId: order-process-service
 ribbon:
   eureka:
     enabled: true
 
 server:
   port: 11130
+
+security:
+  oauth2:
+    client:
+      client-id: kantilever
+      client-secret: kantiSecret
+      access-token-uri: http://localhost:11150/oauth/check_token
+    resource:
+      token-info-uri: http://localhost:11150/oauth/check_token
+  basic:
+    enabled: false
 
 eureka:
   client:
