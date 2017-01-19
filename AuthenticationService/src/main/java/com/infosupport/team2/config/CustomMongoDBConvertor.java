@@ -54,12 +54,11 @@ public class CustomMongoDBConvertor implements Converter<DBObject, OAuth2Authent
 
             Authentication userAuthentication = new UserAuthenticationToken(u.getEmail(),
                     (String) userAuthorization.get("credentials"), authConfigService.getRights(u));
-            OAuth2Authentication authentication = new OAuth2Authentication(oAuth2Request, userAuthentication);
-            return authentication;
+            return new OAuth2Authentication(oAuth2Request, userAuthentication);
         } else { //its a client
             String clientId = (String) storedRequest.get("clientId");
             ClientDetails client = null;
-            if ((null != clientId) && clientId instanceof String) {
+            if ((null != clientId)) {
                 client = clientDetailService.loadClientByClientId(clientId);
             }
             if (null == client) {
