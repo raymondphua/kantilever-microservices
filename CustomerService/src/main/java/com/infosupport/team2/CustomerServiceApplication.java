@@ -1,5 +1,6 @@
 package com.infosupport.team2;
 
+import com.infosupport.team2.model.Address;
 import com.infosupport.team2.model.Customer;
 import com.infosupport.team2.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -25,11 +26,17 @@ public class CustomerServiceApplication {
 			customer1.setPhone("0612345678");
 			customer1.setEmail("jan.meesters@gmail.com");
 
+			Address address1 = new Address();
+			address1.setAddress("Hogevaart 91");
+			address1.setCity("Sprang-Capelle");
+			address1.setZip("5161PM");
+
 			Customer customer2 = new Customer();
 			customer2.setId("2");
-			customer2.setName("Piet Piraat");
+			customer2.setName("Pieter Doe");
 			customer2.setPhone("0687654321");
-			customer2.setEmail("piet.piraat@gmail.com");
+			customer2.setEmail("pieter@hotmail.com");
+			customer2.setAddress(address1);
 
 			customerRepository.save(customer1);
 			customerRepository.save(customer2);
