@@ -7,6 +7,7 @@ import com.infosupport.team2.model.Product;
 import com.infosupport.team2.repository.OrderRepository;
 import com.infosupport.team2.serviceCaller.OrderServiceCaller;
 import com.infosupport.team2.util.PriceValidator;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class OrderService {
     private OrderServiceCaller orderServiceCaller;
 
     public Order createOrder(Order order) {
+        Date date = new Date();
+        Date currentDate = DateUtils.addHours(date, 1);
 
         //service caller, get all products and customer
         Order validatedOrder = orderServiceCaller.createOrder(order);
@@ -36,6 +39,7 @@ public class OrderService {
         validatedOrder.setTotalPrice(totalPrice);
         validatedOrder.setStatus(Status.BESTELD);
         validatedOrder.setId(incrementId());
+        validatedOrder.setOrderDate(currentDate);
 
         //save in repo
         Order result = orderRepo.save(validatedOrder);
