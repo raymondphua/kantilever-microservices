@@ -75,13 +75,13 @@ public class OrderServiceApplication {
 			LocalDateTime date2 = LocalDateTime.now().minusMinutes(30);
 			LocalDateTime date3 = LocalDateTime.now().minusMinutes(1);
 
-			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD, date3));
-			orderRepository.save(new Order(2L, 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date2));
-			orderRepository.save(new Order(3L, 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.BESTELD, date1));
-			orderRepository.save(new Order(4L, 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date1));
+			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.VERZONDEN, date3));
+			orderRepository.save(new Order(2L, 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.INGEPAKT, date2));
+			orderRepository.save(new Order(3L, 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.IN_BEHANDELING, date1));
+			orderRepository.save(new Order(4L, 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.IN_BEHANDELING, date1));
 
 			for (int i = 5; i < 10; i++) {
-				orderRepository.save(new Order((long) i, 3.50, 524, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date1));
+				orderRepository.save(new Order((long) i, 3.50, 524, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD, date1));
 			}
 
 			System.out.println("All orders added");
