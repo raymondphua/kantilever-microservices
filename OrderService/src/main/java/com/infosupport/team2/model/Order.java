@@ -10,6 +10,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,5 +36,5 @@ public class Order {
 
     @JsonFormat(pattern = "YYYY-MM-dd HH:mm")
     @DateTimeFormat(pattern = "YYYY-MM-dd HH:mm")
-    private Date orderDate;
+    private LocalDateTime orderDate;
 }
