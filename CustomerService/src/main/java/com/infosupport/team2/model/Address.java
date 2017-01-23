@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by Raymond Phua on 16-1-2017.
  */
@@ -12,7 +14,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Address {
 
-    private String address;
+    @NotNull
+    private String street;
+
+    @NotNull
+    private String houseNumber;
+
+    @NotNull
     private String city;
+
+    @NotNull
     private String zip;
 }
