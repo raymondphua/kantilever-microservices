@@ -11,6 +11,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class OrderService {
         validatedOrder.setTotalPrice(totalPrice);
         validatedOrder.setStatus(Status.BESTELD);
         validatedOrder.setId(incrementId());
-        validatedOrder.setOrderDate(currentDate);
+        validatedOrder.setOrderDate(LocalDateTime.now());
 
         //save in repo
         Order result = orderRepo.save(validatedOrder);
@@ -69,7 +70,7 @@ public class OrderService {
         return orderRepo.findOne(id).getOrderedProducts();
     }
 
-    public List<Order> getOrdersAfterDate(Date date) {
+    public List<Order> getOrdersAfterDate(LocalDateTime date) {
         if (date == null) {
             return null;
         }

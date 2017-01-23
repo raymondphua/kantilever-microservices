@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -70,22 +71,11 @@ public class OrderServiceApplication {
 
 			Address factuurAdres1 = new Address("Kruisboog 42","Veenendaal","4444ZZ");
 
-			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			LocalDateTime date1 = LocalDateTime.now();
+			LocalDateTime date2 = LocalDateTime.now().plusMinutes(30);
+			LocalDateTime date3 = LocalDateTime.now().plusMinutes(1);
 
-			Date date1 = null;
-			try {
-				date1 = formatter.parse("2017-01-20 00:00");
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
-			Date date2 = null;
-			try {
-				date2 = formatter.parse("2017-01-22 00:00");
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD, date2));
+			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD, date3));
 			orderRepository.save(new Order(2L, 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date2));
 			orderRepository.save(new Order(3L, 5, 70, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.BESTELD, date1));
 			orderRepository.save(new Order(4L, 7.50, 125, customer2, orderedProducts2, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date1));
