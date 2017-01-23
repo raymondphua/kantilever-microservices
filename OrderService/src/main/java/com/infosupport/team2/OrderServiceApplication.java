@@ -72,8 +72,8 @@ public class OrderServiceApplication {
 			Address factuurAdres1 = new Address("Kruisboog 42","Veenendaal","4444ZZ");
 
 			LocalDateTime date1 = LocalDateTime.now();
-			LocalDateTime date2 = LocalDateTime.now().plusMinutes(30);
-			LocalDateTime date3 = LocalDateTime.now().plusMinutes(1);
+			LocalDateTime date2 = LocalDateTime.now().minusMinutes(30);
+			LocalDateTime date3 = LocalDateTime.now().minusMinutes(1);
 
 			orderRepository.save(new Order(1L, 3.50, 100, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.BESTELD, date3));
 			orderRepository.save(new Order(2L, 3.50, 200, customer1, orderedProducts1, afleverAdres1, factuurAdres1, Status.AFGELEVERD, date2));
