@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * Created by Raymond Phua on 16-1-2017.
  */
@@ -24,4 +27,5 @@ public class Product {
     private double price;
     private String supplierProductId;
     private int quantity;
+
 }
