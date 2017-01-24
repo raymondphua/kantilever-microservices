@@ -1,7 +1,9 @@
 package com.infosupport.team2.resource;
 
+import com.infosupport.team2.model.Address;
 import com.infosupport.team2.model.Customer;
 import com.infosupport.team2.repository.CustomerRepository;
+import com.infosupport.team2.serviceCaller.AuthServiceCaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,9 @@ public class CustomerResource {
     @Autowired
     private CustomerRepository customerRepo;
 
+    @Autowired
+    private AuthServiceCaller authServiceCaller;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Customer> getAllCustomers(@RequestParam Map<String,String> allRequestParams) {
         return customerRepo.filterCustomer(allRequestParams);
@@ -27,5 +32,15 @@ public class CustomerResource {
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Customer getCustomerById(@PathVariable String id) {
         return customerRepo.findOne(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Customer createCustomer(@ModelAttribute("userForm") Customer customer, Address address) {
+
+        customer.setAddress(address);
+        customer.setEmail(customer.getEmail().toLowerCase());
+        customerRepo.save(customer);
+        authServiceCaller.createUser(customer);
+        return customer;
     }
 }
