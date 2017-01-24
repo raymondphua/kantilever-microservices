@@ -41,7 +41,7 @@ public class OrderService {
         validatedOrder.setStatus(Status.BESTELD);
         validatedOrder.setId(incrementId());
         validatedOrder.setOrderDate(LocalDateTime.now());
-        validatedOrder.generateKey(incrementTodayId(validatedOrder.getOrderDate()));
+        validatedOrder.generateKey(incrementTodayId(LocalDateTime.now().withHour(0)));
 
         //save in repo
         Order result = orderRepo.save(validatedOrder);
