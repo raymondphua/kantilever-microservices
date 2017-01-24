@@ -13,9 +13,9 @@ zuul:
     customerservice:
       path: /customerservice/**
       serviceId: customer-service
-    orderprocessservice:
-      path: /orderprocessservice/**
-      serviceId: order-process-service
+    biintegrationservice:
+      path: /biintegration/**
+      serviceId: biintegration-service
 ribbon:
   eureka:
     enabled: true
@@ -40,6 +40,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:11140/eureka
+    eureka-server-connect-timeout-seconds: 30
   instance:
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true

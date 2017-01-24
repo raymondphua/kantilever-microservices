@@ -8,8 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * Created by Raymond Phua on 17-1-2017.
  */
@@ -21,20 +19,25 @@ public class Customer {
 
     @Id
     private String id;
-
-    @NotNull
     private String name;
-
-    @NotNull
     private String email;
-
-    @NotNull
     private String phone;
-
-    @NotNull
     private Address address;
 
     @Transient
     @JsonIgnore
     private String password;
+    private String customerKey;
+
+    public void generateKey(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("cst-");
+        String[] names = name.split(" ");
+        sb.append(names[names.length-1]);
+        sb.append(name.charAt(0));
+        sb.append("-");
+        sb.append(address.getZip());
+
+        this.customerKey = sb.toString();
+    }
 }
