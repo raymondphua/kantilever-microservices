@@ -26,6 +26,6 @@ public class CustomerService {
     }
 
     public boolean emailExists(String email) {
-        return customerRepo.findCustomerByEmail(email.toLowerCase()) != null;
+        return customerRepo.findCustomerByEmail(email.toLowerCase()) == null;
     }
 }
