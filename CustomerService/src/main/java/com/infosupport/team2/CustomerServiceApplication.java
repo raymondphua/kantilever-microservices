@@ -20,34 +20,58 @@ public class CustomerServiceApplication {
 	@Bean
 	CommandLineRunner onStartup(CustomerRepository customerRepository) {
 		return (String... args) -> {
-			Address address1 = new Address();
-			address1.setAddress("Kerkstaat 91");
-			address1.setCity("Amsterdam");
-			address1.setZip("1564FH");
+			customerRepository.deleteAll();
 
-			Customer customer1 = new Customer();
-			customer1.setId("1");
-			customer1.setName("Jan Meesters");
-			customer1.setPhone("0612345678");
-			customer1.setEmail("jan.meesters@gmail.com");
-			customer1.setAddress(address1);
-			customer1.generateKey();
+			Address customerAddress = Address.builder()
+					.address("Kerkstraat 91")
+					.city("Amsterdam")
+					.zip("1564FH")
+					.build();
 
-			Address address2 = new Address();
-			address2.setAddress("Hogevaart 91");
-			address2.setCity("Sprang-Capelle");
-			address2.setZip("5161PM");
+			Customer customer = Customer.builder()
+					.id("1")
+					.name("Jan Meesters")
+					.phone("0612345678")
+					.email("jan.meesters@gmail.com")
+					.address(customerAddress)
+					.build();
+			customer.generateKey();
 
-			Customer customer2 = new Customer();
-			customer2.setId("2");
-			customer2.setName("Pieter Doe");
-			customer2.setPhone("0687654321");
-			customer2.setEmail("pieter@hotmail.com");
-			customer2.setAddress(address2);
-			customer2.generateKey();
+			customerRepository.save(customer);
 
-			customerRepository.save(customer1);
-			customerRepository.save(customer2);
+			customerAddress = Address.builder()
+					.address("Kamperzand 184")
+					.city("Huizen")
+					.zip("1274HM")
+					.build();
+
+			customer = Customer.builder()
+					.id("2")
+					.name("Derya Jongerden")
+					.phone("0674558235")
+					.email("derya@gmail.com")
+					.address(customerAddress)
+					.build();
+			customer.generateKey();
+
+			customerRepository.save(customer);
+
+			customerAddress = Address.builder()
+					.address("Breudijk 145")
+					.city("Rotterdam")
+					.zip("3079TA")
+					.build();
+
+			customer = Customer.builder()
+					.id("3")
+					.name("Pieter Visser")
+					.phone("0683552964")
+					.email("pieter@hotmail.com")
+					.address(customerAddress)
+					.build();
+			customer.generateKey();
+
+			customerRepository.save(customer);
 
 			System.out.println("All customers added");
 			customerRepository.findAll().forEach(System.out::println);
