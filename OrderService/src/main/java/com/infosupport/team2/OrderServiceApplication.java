@@ -78,9 +78,9 @@ public class OrderServiceApplication {
 			List<Product> orderedProducts3 = new ArrayList<>();
 			orderedProducts2.add(new Product("1", "prd-BAT-LJ0192S", 2L, "Road-150 Red, 62", "This bike is ridden by race winners. Developed with the Adventure Works Cycles professional race team, it has a extremely light heat-treated aluminum frame, and steering that allows precision control.", "http://res.cloudinary.com/kantilever/image/upload/v1484171992/bike3_vhdpgz.png", 1366, "FG-485-S", 10));
 			orderedProducts1.add(new Product("2", "prd-KOG-FRM94S42", 8L, "HL Road Frame - Black, 58", "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.", "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame3_iz3yj5.jpg", 1364.50, "FR-M94S-42", 3));
-			Address afleverAdres1 = new Address("Leerpark 120", "Dordrecht", "1111AA");
+			Address afleverAdres1 = new Address("Leerpark"," 120", "Dordrecht", "1111AA");
 
-			Address factuurAdres1 = new Address("Kruisboog 42","Veenendaal","4444ZZ");
+			Address factuurAdres1 = new Address("Kruisboog"," 42","Veenendaal","4444ZZ");
 
 			LocalDateTime date1 = LocalDateTime.now();
 			LocalDateTime date2 = LocalDateTime.now().minusMinutes(30);

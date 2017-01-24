@@ -23,7 +23,8 @@ public class CustomerServiceApplication {
 			customerRepository.deleteAll();
 
 			Address customerAddress = Address.builder()
-					.address("Kerkstraat 91")
+					.street("Kerkstraat")
+					.houseNumber("91")
 					.city("Amsterdam")
 					.zip("1564FH")
 					.build();
@@ -40,7 +41,8 @@ public class CustomerServiceApplication {
 			customerRepository.save(customer);
 
 			customerAddress = Address.builder()
-					.address("Kamperzand 184")
+					.street("Kamperzand")
+					.houseNumber("184")
 					.city("Huizen")
 					.zip("1274HM")
 					.build();
@@ -57,7 +59,8 @@ public class CustomerServiceApplication {
 			customerRepository.save(customer);
 
 			customerAddress = Address.builder()
-					.address("Breudijk 145")
+					.street("Breudijk")
+					.houseNumber("145")
 					.city("Rotterdam")
 					.zip("3079TA")
 					.build();
