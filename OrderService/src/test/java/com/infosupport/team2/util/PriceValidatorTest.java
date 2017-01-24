@@ -36,7 +36,7 @@ public class PriceValidatorTest {
         double totalPrice = PriceValidator.calcTotalPrice(order);
 
         //Assert
-        assertThat(totalPrice, is(55.0));
+        assertThat(totalPrice, is(66.55));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class PriceValidatorTest {
         double totalPrice = PriceValidator.calcTotalPrice(order);
 
         //Assert
-        assertThat(totalPrice, is(30.0));
+        assertThat(totalPrice, is(36.3));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class PriceValidatorTest {
         double totalPrice = PriceValidator.calcTotalPrice(order);
 
         //Assert
-        assertThat(totalPrice, is(55.50));
+        assertThat(totalPrice, is(67.155));
     }
 
 }

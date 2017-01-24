@@ -29,9 +29,6 @@ public class OrderService {
     private OrderServiceCaller orderServiceCaller;
 
     public Order createOrder(Order order) {
-        Date date = new Date();
-        Date currentDate = DateUtils.addHours(date, 1);
-
         //service caller, get all products and customer
         Order validatedOrder = orderServiceCaller.createOrder(order);
 
