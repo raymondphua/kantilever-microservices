@@ -17,9 +17,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-
     @Id
     private String id;
+    private String productKey;
     private Long supplierId;
     private String name;
     private String description;

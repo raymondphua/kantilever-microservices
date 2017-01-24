@@ -5,7 +5,6 @@ import com.infosupport.team2.model.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,4 +15,5 @@ public interface OrderRepository extends MongoRepository<Order, Long>, CustomOrd
     public Order findByStatus(Status status);
     public Order findTopByOrderByIdDesc();
     public List<Order> findByOrderDateAfter(LocalDateTime date);
+    public int countByOrderDateAfter(LocalDateTime date);
 }

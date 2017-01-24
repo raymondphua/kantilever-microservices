@@ -13,9 +13,9 @@ zuul:
     customerservice:
       path: /customerservice/**
       serviceId: customer-service
-    orderprocessservice:
-      path: /orderprocessservice/**
-      serviceId: order-process-service
+    biintegrationservice:
+      path: /biintegration/**
+      serviceId: biintegration-service
 ribbon:
   eureka:
     enabled: true
