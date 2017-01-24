@@ -36,12 +36,7 @@ public class CustomerResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Customer createCustomer(@ModelAttribute("userForm") Customer customer, Address address) {
-
-        customer.setAddress(address);
-        customer.setEmail(customer.getEmail().toLowerCase());
-        customerRepo.save(customer);
-        authServiceCaller.createUser(customer);
-        return customer;
+    public Customer createCustomer(@RequestBody Customer customer) {
+        return customerService.createCustomer(customer);
     }
 }
