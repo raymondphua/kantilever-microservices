@@ -41,6 +41,7 @@ public class OrderService {
         validatedOrder.setStatus(Status.BESTELD);
         validatedOrder.setId(incrementId());
         validatedOrder.setOrderDate(LocalDateTime.now());
+        validatedOrder.generateKey(incrementTodayId(validatedOrder.getOrderDate()));
 
         //save in repo
         Order result = orderRepo.save(validatedOrder);
@@ -79,10 +80,14 @@ public class OrderService {
 
     private Long incrementId() {
         Order latestOrder = orderRepo.findTopByOrderByIdDesc();
-        //Integer id = Integer.valueOf(latestOrder.getId());
         Long id = latestOrder.getId();
         id++;
 
         return id;
+    }
+
+    private int incrementTodayId(LocalDateTime date) {
+        int latestOrder = orderRepo.countByOrderDateAfter(date);
+        return latestOrder++;
     }
 }

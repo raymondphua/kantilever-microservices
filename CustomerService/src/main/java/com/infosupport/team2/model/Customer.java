@@ -21,4 +21,17 @@ public class Customer {
     private String email;
     private String phone;
     private Address address;
+    private String customerKey;
+
+    public void generateKey(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("cst-");
+        String[] names = name.split(" ");
+        sb.append(names[names.length-1]);
+        sb.append(name.charAt(0));
+        sb.append("-");
+        sb.append(address.getZip());
+
+        this.customerKey = sb.toString();
+    }
 }
