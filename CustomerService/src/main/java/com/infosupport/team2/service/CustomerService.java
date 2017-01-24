@@ -35,9 +35,10 @@ public class CustomerService {
     }
 
     public Customer createCustomer(Customer customer) {
-        Customer savedCustomer = customerRepo.save(customer);
+        customer.generateKey();
+        customerRepo.save(customer);
         authServiceCaller.createUser(customer);
 
-        return savedCustomer;
+        return customer;
     }
 }

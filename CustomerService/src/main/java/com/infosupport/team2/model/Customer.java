@@ -1,6 +1,7 @@
 package com.infosupport.team2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class Customer {
     @Transient
     @JsonIgnore
     private String password;
+
     private String customerKey;
 
     public void generateKey(){

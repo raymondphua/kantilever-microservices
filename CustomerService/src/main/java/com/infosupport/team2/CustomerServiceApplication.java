@@ -20,6 +20,8 @@ public class CustomerServiceApplication {
 	@Bean
 	CommandLineRunner onStartup(CustomerRepository customerRepository) {
 		return (String... args) -> {
+			customerRepository.deleteAll();
+
 			Address address1 = new Address();
 			address1.setStreet("Kerkstaat");
 			address1.setHouseNumber("91");

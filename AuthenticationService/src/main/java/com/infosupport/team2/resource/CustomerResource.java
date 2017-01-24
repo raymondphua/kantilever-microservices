@@ -21,6 +21,5 @@ public class CustomerResource {
     @RequestMapping(value = "/oauth/registration", method = RequestMethod.POST)
     public void createCustomer(@RequestBody User user) {
         userService.save(user);
-
     }
 }
