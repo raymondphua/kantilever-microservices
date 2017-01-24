@@ -17,7 +17,8 @@ public class ValidationResource {
     CustomerService customerService;
 
     @RequestMapping(value="/email", method = RequestMethod.POST)
-    public boolean emailExists(@RequestBody ValidationModel validationModel) {
-        return customerService.emailExists(validationModel.getEmail());
+    public ValidationModel emailExists(@RequestBody ValidationModel validationModel) {
+        validationModel.setValid(customerService.emailExists(validationModel.getEmail()));
+        return validationModel;
     }
 }
