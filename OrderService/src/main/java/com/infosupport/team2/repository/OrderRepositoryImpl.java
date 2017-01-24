@@ -7,10 +7,10 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
 /**
  * Created by Raymond Phua on 16-1-2017.
@@ -42,6 +42,11 @@ public class OrderRepositoryImpl implements CustomOrderRepository {
     private Criteria getCriteriaForParam(String property, String[] values) {
         if (property.equals("status") && values.length > 0) {
             return Criteria.where(property).is(Status.valueOf(values[0].toUpperCase()));
+        } else if (property.equals("orderDate") && values.length > 0) {
+            Date createDate = new Date(Long.valueOf(values[0]));
+            Instant instant = Instant.ofEpochMilli(createDate.getTime());
+            LocalDateTime date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+            return Criteria.where(property).gte(date);
         } else {
             return Criteria.where(property.toLowerCase()).in(Arrays.asList(values));
         }
@@ -51,6 +56,8 @@ public class OrderRepositoryImpl implements CustomOrderRepository {
         switch (param.toLowerCase()) {
             case "status":
                 return "status";
+            case "dateAfter":
+                return "orderDate";
             default:
                 return param;
         }

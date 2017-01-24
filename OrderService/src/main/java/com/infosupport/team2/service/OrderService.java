@@ -11,7 +11,9 @@ import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -68,13 +70,6 @@ public class OrderService {
 
     public List<Product> getProductsFromOrderId(Long id) {
         return orderRepo.findOne(id).getOrderedProducts();
-    }
-
-    public List<Order> getOrdersAfterDate(LocalDateTime date) {
-        if (date == null) {
-            return null;
-        }
-        return orderRepo.findByOrderDateAfter(date);
     }
 
     private Long incrementId() {

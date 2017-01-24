@@ -67,12 +67,4 @@ public class OrderResource {
                 .buildAndExpand(result.getId()).toUri();
         return ResponseEntity.noContent().location(location).build();
     }
-
-    @RequestMapping(value = "/date", method = RequestMethod.POST)
-    public List<Order> getOrderFromDateTime(@RequestBody ProcessOrderModel processOrderModel) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime date = LocalDateTime.parse(processOrderModel.getDate(), formatter);
-
-        return orderService.getOrdersAfterDate(date);
-    }
 }
