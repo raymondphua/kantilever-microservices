@@ -20,8 +20,11 @@ public class CustomerServiceApplication {
 	@Bean
 	CommandLineRunner onStartup(CustomerRepository customerRepository) {
 		return (String... args) -> {
+			customerRepository.deleteAll();
+
 			Address address1 = new Address();
-			address1.setAddress("Kerkstaat 91");
+			address1.setStreet("Kerkstaat");
+			address1.setHouseNumber("91");
 			address1.setCity("Amsterdam");
 			address1.setZip("1564FH");
 
@@ -34,7 +37,7 @@ public class CustomerServiceApplication {
 			customer1.generateKey();
 
 			Address address2 = new Address();
-			address2.setAddress("Hogevaart 91");
+			address2.setStreet("Hogevaart 91");;
 			address2.setCity("Sprang-Capelle");
 			address2.setZip("5161PM");
 

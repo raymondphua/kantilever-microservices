@@ -15,7 +15,11 @@
         <sec:custom-filter ref="clientCredentialsTokenEndpointFilter" after="BASIC_AUTH_FILTER" />  
         <sec:access-denied-handler ref="oauthAccessDeniedHandler" />
     </sec:http>
-    
+
+    <sec:http pattern="/oauth/registration" create-session="stateless" entry-point-ref="oauthAuthenticationEntryPoint">
+        <sec:anonymous enabled="true"></sec:anonymous>
+    </sec:http>
+
     <sec:http auto-config="true"  pattern="/oauth/check_token"  create-session="stateless" authentication-manager-ref="authenticationManager">
         <sec:intercept-url pattern="/oauth/check_token" access="IS_AUTHENTICATED_FULLY" />
         <sec:anonymous enabled="false"/>
