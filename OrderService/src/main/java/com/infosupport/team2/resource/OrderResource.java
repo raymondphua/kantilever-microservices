@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * Created by Raymond Phua on 16-1-2017.
  */
-@CrossOrigin
+@CrossOrigin(exposedHeaders = "Location")
 @RestController
 @RequestMapping(value = "/orders")
 public class OrderResource {
