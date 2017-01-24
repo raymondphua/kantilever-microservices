@@ -56,7 +56,7 @@ public class OrderRepositoryImpl implements CustomOrderRepository {
         switch (param.toLowerCase()) {
             case "status":
                 return "status";
-            case "dateAfter":
+            case "dateafter":
                 return "orderDate";
             default:
                 return param;
