@@ -59,19 +59,6 @@ You can test these examples with postman or a similar application. <br/>
     /customerservice/customers/{id}
 
 <br/>
-<ul>
-    <li>Id</li>
-    <li>Name</li>
-    <li>Email</li>
-    <li>Phone</li>
-    <li>Street</li>
-    <li>House Number</li>
-    <li>City</li>
-    <li>Zip</li>
-    <li>Customer key</li>
-</ul>
-
-<br/>
 Return value: 
 <br/>
 
@@ -143,6 +130,22 @@ Post with the value:
 
     /customerservice/customers/?{email}
 <br/> 
+
+<br/>
+<mark>POST</mark> Through this route you validate if an email exists. 
+<br/>
+
+    /customerservice/customers/validate/email
+<br/>
+Return value:
+<br/>
+
+    {
+      "email": "pieter@hotmail.com",
+      "valid": false
+    }
+
+<br/>
 
 Now we are going to get some orders, but before that we need to authorize first. This is how it's done. <br/>
 <mark>POST</mark> Trough this route: <br/>
@@ -240,14 +243,170 @@ Return value:
       } etc...
 <br/>
 
-<mark>GET</mark> Through this route the orders with a specifiek id 
+<mark>GET</mark> Through this route you get the orders with a specific id 
 <br/>
 
     /orderservice/orders/{id}
 
 <br/>
+Return value:
+<br/>
 
+    {
+      "id": 3,
+      "orderKey": "ord-20170125-000000003",
+      "shippingFee": 5,
+      "totalPrice": 70,
+      "customer": {
+        "id": "2",
+        "name": "Piet Piraat",
+        "email": "piet.piraat@gmail.com",
+        "phone": "0687654321",
+        "customerKey": null
+      },
+      "orderedProducts": [
+        {
+          "id": "1",
+          "productKey": "prd-BAT-LJ0192S",
+          "supplierId": 2,
+          "name": "Road-150 Red, 62",
+          "description": "This bike is ridden by race winners. Developed with the Adventure Works Cycles professional race team, it has a extremely light heat-treated aluminum frame, and steering that allows precision control.",
+          "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171992/bike3_vhdpgz.png",
+          "price": 1366,
+          "supplierProductId": "FG-485-S",
+          "quantity": 1
+        }
+      ],
+      "deliveryAddress": {
+        "address": "Leerpark 120",
+        "city": "Dordrecht",
+        "zip": "1111AA"
+      },
+      "invoiceAddress": {
+        "address": "Kruisboog 42",
+        "city": "Veenendaal",
+        "zip": "4444ZZ"
+      },
+      "status": "IN_BEHANDELING",
+      "orderDate": "2017-01-25 10:59"
+    }
 
+<br/>
+<mark>GET</mark> Through this route you get products from orders with a specific id 
+<br/>
+
+    /orderservice/orders/{id}/products
+<br/>
+Return value:
+<br/>
+
+    [
+      {
+        "id": "1",
+        "productKey": "prd-BAT-LJ0192S",
+        "supplierId": 2,
+        "name": "Road-150 Red, 62",
+        "description": "This bike is ridden by race winners. Developed with the Adventure Works Cycles professional race team, it has a extremely light heat-treated aluminum frame, and steering that allows precision control.",
+        "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171992/bike3_vhdpgz.png",
+        "price": 1366,
+        "supplierProductId": "FG-485-S",
+        "quantity": 1
+      }
+    ]
+
+<br/>
+
+<mark>POST</mark> Through this route you can post a order. 
+<br/>
+    
+    /orderservice/orders
+<br/>
+In the body add this as "raw" and "application/json".
+<br/>
+
+    {
+    "id": 78,
+    "orderKey": "ord-20170125-000000001",
+    "shippingFee": 3.5,
+    "totalPrice": 100,
+    "customer": {
+      "id": "1",
+      "name": "Jan Meesters",
+      "email": "jan.meesters@gmail.com",
+      "phone": "0612345678",
+      "customerKey": null
+    },
+    "orderedProducts": [
+      {
+        "id": "1",
+        "productKey": "prd-BAT-LJ0192S",
+        "supplierId": 2,
+        "name": "Road-150 Red, 62",
+        "description": "This bike is ridden by race winners. Developed with the Adventure Works Cycles professional race team, it has a extremely light heat-treated aluminum frame, and steering that allows precision control.",
+        "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171992/bike3_vhdpgz.png",
+        "price": 1366,
+        "supplierProductId": "LJ-0192-S",
+        "quantity": 1
+      },
+      {
+        "id": "2",
+        "productKey": "prd-KOG-FRM94S42",
+        "supplierId": 8,
+        "name": "HL Road Frame - Black, 58",
+        "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+        "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame3_iz3yj5.jpg",
+        "price": 1364.5,
+        "supplierProductId": "FR-M94S-42",
+        "quantity": 3
+      },
+      {
+        "id": "3",
+        "productKey": "prd-BAT-FRM94S42",
+        "supplierId": 2,
+        "name": "Road-150 Frame Red, 62",
+        "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+        "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame2_gpedbr.jpg",
+        "price": 1349.6,
+        "supplierProductId": "FR-M94S-42",
+        "quantity": 1
+      }
+    ],
+    "deliveryAddress": {
+      "address": "Leerpark 120",
+      "city": "Dordrecht",
+      "zip": "1111AA"
+    },
+    "invoiceAddress": {
+      "address": "Kruisboog 42",
+      "city": "Veenendaal",
+      "zip": "4444ZZ"
+    },
+    "status": "VERZONDEN"
+    }
+
+<br/>
+<mark>PUT</mark> Through this route you can update a order. 
+<br/>
+    
+    /orderservice/orders/{id}
+<br/>
+In the body add this as "raw" and "application/json".
+<br/>
+You can choose from the following statussen. 
+<br/>
+<ul>
+    <li>BESTELD</li>
+    <li>IN_BEHANDELING</li>
+    <li>INGEPAKT</li>
+    <li>VERZONDEN</li>
+</ul>
+<br/>
+
+    {
+    "status": "BESTELD"
+    }
+    
+<br/>
 
 
 
