@@ -15,7 +15,6 @@ import java.util.Map;
 /**
  * Created by Raymond Phua on 17-1-2017.
  */
-@CrossOrigin
 @RestController
 @RequestMapping(value = "/customers")
 public class CustomerResource {
