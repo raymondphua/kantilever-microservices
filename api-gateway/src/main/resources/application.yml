@@ -1,4 +1,5 @@
 zuul:
+  retryable: true
   ignored-services: '*'
   routes:
     zuulservice:
@@ -16,9 +17,21 @@ zuul:
     biintegrationservice:
       path: /biintegration/**
       serviceId: biintegration-service
+
 ribbon:
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  OkToRetryOnAllOperations: true
   eureka:
     enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
 
 server:
   port: 11130
