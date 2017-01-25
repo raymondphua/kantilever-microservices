@@ -40,7 +40,7 @@ public class CustomerResource {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
-        Customer result = customerService.createCustomer(customer);
+        customerService.createCustomer(customer);
 
         URI location = URI.create(ServletUriComponentsBuilder
                  .fromHttpUrl(REDIRECT_URL).toUriString());
