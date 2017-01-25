@@ -13,7 +13,7 @@ public class PriceValidator {
         double totalPrice = 0;
 
         for(Product p : order.getOrderedProducts()) {
-            totalPrice += p.getPrice() * p.getQuantity() * (Vat.HIGH.getValue().doubleValue() + 1.0);
+            totalPrice += p.getTotalPrice();
         }
 
         totalPrice += order.getShippingFee();
