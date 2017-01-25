@@ -18,7 +18,6 @@ import java.util.Map;
 /**
  * Created by Raymond Phua on 16-1-2017.
  */
-@CrossOrigin(exposedHeaders = "Location")
 @RestController
 @RequestMapping(value = "/orders")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
