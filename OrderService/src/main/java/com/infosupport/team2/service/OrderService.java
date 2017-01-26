@@ -7,14 +7,10 @@ import com.infosupport.team2.model.Product;
 import com.infosupport.team2.repository.OrderRepository;
 import com.infosupport.team2.serviceCaller.OrderServiceCaller;
 import com.infosupport.team2.util.PriceValidator;
-import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

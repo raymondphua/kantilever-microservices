@@ -28,7 +28,7 @@ public class OrderResource {
 
     @PreAuthorize("hasAuthority('employee')")
     @RequestMapping(method = RequestMethod.GET)
-    public List<Order> allOrdersWithStatus(@RequestParam Map<String,String> allRequestParams) {
+    public List<Order> allOrdersWithStatus(@RequestParam Map<String, String> allRequestParams) {
         return orderService.getOrders(allRequestParams);
     }
 
