@@ -9,14 +9,10 @@ With this you should be able to: <br />
     <li>Edit customer details</li>
 </ul>
 
-
-####DeliveryService
-The delivery service handles the requirements 7, 9, 10. <br />
-With this you should be able to: <br />
+####AuthenticationService
+Is for authenticating the user: <br />
 <ul>
-    <li>Rate an order</li>
-    <li>Wrap an order </li>
-    <li>Ship an order</li>
+    <li>oauth2</li>
 </ul>
 
 ####OrderService
@@ -427,6 +423,172 @@ You can choose from the following statussen.
     <li>VERZONDEN</li>
 </ul>
 <br/>
+<mark>GET</mark> Through this route you can filter status. <br/>
+
+    /orderservice/orders?status={status}
+<br/>
+Example return value:
+<br/>
+    
+    [
+      {
+        "id": 2,
+        "orderKey": "ord-20170126-000000002",
+        "shippingFee": 20,
+        "totalPrice": 8259.01,
+        "customer": {
+          "id": "1",
+          "name": "Jan Meesters",
+          "email": "jan.meesters@gmail.com",
+          "phone": "0612345678",
+          "customerKey": "cst-MeestersJ-1564FH"
+        },
+        "orderedProducts": [
+          {
+            "id": "1",
+            "productKey": "prd-BAT-LJ0192S",
+            "supplierId": 2,
+            "name": "Road-150 Red, 62",
+            "description": "This bike is ridden by race winners. Developed with the Adventure Works Cycles professional race team, it has a extremely light heat-treated aluminum frame, and steering that allows precision control.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171992/bike3_vhdpgz.png",
+            "price": 1366,
+            "supplierProductId": "LJ-0192-S",
+            "quantity": 1
+          },
+          {
+            "id": "2",
+            "productKey": "prd-KOG-FRM94S42",
+            "supplierId": 8,
+            "name": "HL Road Frame - Black, 58",
+            "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame3_iz3yj5.jpg",
+            "price": 1364.5,
+            "supplierProductId": "FR-M94S-42",
+            "quantity": 3
+          },
+          {
+            "id": "3",
+            "productKey": "prd-BAT-FRM94S42",
+            "supplierId": 2,
+            "name": "Road-150 Frame Red, 62",
+            "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame2_gpedbr.jpg",
+            "price": 1349.6,
+            "supplierProductId": "FR-M94S-42",
+            "quantity": 1
+          },
+          {
+            "id": "2",
+            "productKey": "prd-KOG-FRM94S42",
+            "supplierId": 8,
+            "name": "HL Road Frame - Black, 58",
+            "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame3_iz3yj5.jpg",
+            "price": 1364.5,
+            "supplierProductId": "FR-M94S-42",
+            "quantity": 3
+          }
+        ],
+        "deliveryAddress": {
+          "street": "Leerpark",
+          "houseNumber": " 120",
+          "city": "Dordrecht",
+          "zip": "1111AA"
+        },
+        "invoiceAddress": {
+          "street": "Kruisboog",
+          "houseNumber": " 42",
+          "city": "Veenendaal",
+          "zip": "4444ZZ"
+        },
+        "status": "INGEPAKT",
+        "orderDate": "2017-01-26 13:06"
+      }
+    ]
+<br/>
+<mark>GET</mark> Through this route you can filter after a certain date in milliseconds 
+<br/>
+    
+    orderservice/orders?dateafter={dateInMilliseconds}
+<br/>
+Example return value:
+<br/>
+
+    {
+        "id": 1,
+        "orderKey": "ord-20170126-000000001",
+        "shippingFee": 20,
+        "totalPrice": 8259.01,
+        "customer": {
+          "id": "1",
+          "name": "Jan Meesters",
+          "email": "jan.meesters@gmail.com",
+          "phone": "0612345678",
+          "customerKey": "cst-MeestersJ-1564FH"
+        },
+        "orderedProducts": [
+          {
+            "id": "1",
+            "productKey": "prd-BAT-LJ0192S",
+            "supplierId": 2,
+            "name": "Road-150 Red, 62",
+            "description": "This bike is ridden by race winners. Developed with the Adventure Works Cycles professional race team, it has a extremely light heat-treated aluminum frame, and steering that allows precision control.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171992/bike3_vhdpgz.png",
+            "price": 1366,
+            "supplierProductId": "LJ-0192-S",
+            "quantity": 1
+          },
+          {
+            "id": "2",
+            "productKey": "prd-KOG-FRM94S42",
+            "supplierId": 8,
+            "name": "HL Road Frame - Black, 58",
+            "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame3_iz3yj5.jpg",
+            "price": 1364.5,
+            "supplierProductId": "FR-M94S-42",
+            "quantity": 3
+          },
+          {
+            "id": "3",
+            "productKey": "prd-BAT-FRM94S42",
+            "supplierId": 2,
+            "name": "Road-150 Frame Red, 62",
+            "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame2_gpedbr.jpg",
+            "price": 1349.6,
+            "supplierProductId": "FR-M94S-42",
+            "quantity": 1
+          },
+          {
+            "id": "2",
+            "productKey": "prd-KOG-FRM94S42",
+            "supplierId": 8,
+            "name": "HL Road Frame - Black, 58",
+            "description": "Our lightest and best quality aluminum frame made from the newest alloy; it is welded and heat-treated for strength. Our innovative design results in maximum comfort and performance.",
+            "imgUrl": "http://res.cloudinary.com/kantilever/image/upload/v1484171995/frame3_iz3yj5.jpg",
+            "price": 1364.5,
+            "supplierProductId": "FR-M94S-42",
+            "quantity": 3
+          }
+        ],
+        "deliveryAddress": {
+          "street": "Leerpark",
+          "houseNumber": " 120",
+          "city": "Dordrecht",
+          "zip": "1111AA"
+        },
+        "invoiceAddress": {
+          "street": "Kruisboog",
+          "houseNumber": " 42",
+          "city": "Veenendaal",
+          "zip": "4444ZZ"
+        },
+        "status": "VERZONDEN",
+        "orderDate": "2017-01-26 13:35"
+      } etc...
+<br/>
+
 
 Installation
 ------------
