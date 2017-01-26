@@ -28,17 +28,6 @@ With this you should be able to: <br />
     <li>Change/modify order</li>
 </ul>
 
-####PaymentService
-The order service handles the requirements 8, 11. <br />
-With this you should be able to: <br />
-<ul>
-    <li>Adjust credit </li>
-    <li>Register payment</li>
-</ul>
-
-####OrderProcessService
-This process service (composite) will be able to call the api of OrderService and InventoryService (which is not available in this project).
-
 ####Discovery-server
 #####What is eureka?
 Eureka is a REST based service that is primarily used in the AWS cloud for locating services for the purpose of load balancing and failover of middle-tier servers. <br />
@@ -52,10 +41,6 @@ Here we use eureka for the following purposes: <br />
 Zuul is the front door for all requests from devices and web sites to the backend of the Netflix streaming application. <br /> 
 As an edge service application, Zuul is built to enable dynamic routing, monitoring, resiliency and security. <br />
 
-The Latest Version
-------------------
-The latest version and greatest.
-
 Technology
 -------------
 <ul> 
@@ -67,12 +52,52 @@ API Examples
 -------------
 You can test these examples with postman or a similar application. <br/>
 
+IMPORTANT: Only if you get a 401 status code (unauthorized) you should execute these steps. 
+<br/>
+<mark>POST</mark> Trough this route: <br/>
+
+    /oauth/token
+
+<br/>
+Select x-www-form-urlencode, in the body you should add the following <br/>
+<br/>
+|grant_type     |    password           |
+<br/>
+|username       |    pieter@hotmail.com |
+<br/>
+|password       |    henkie             |
+<br/>
+|client_id      |    kantilever         |
+<br/>
+|client_secret  |    kantiSecret        |
+<br/>
+
+
+<br/>
+Example return value:
+<br/>
+    
+    {
+      "access_token": "ff501505-0248-43f8-88e7-926da0ca1ba7",
+      "token_type": not important,
+      "refresh_token": not important,
+      "expires_in": not important,
+      "scope": not important
+    }
+
+<br/>
+Now we need to add this to the headers of our request.
+<br/>
+|Authorization   |    Bearer ff501505-0248-43f8-88e7-926da0ca1ba7|
+<br/>
+|Content-Type    |    application/json|
+<br/>
+<br/>
 <mark>GET</mark> Through this route you can retrieve the user information: <br/>
 
     /customerservice/customers/{id}
-
 <br/>
-Return value: 
+Example return value: 
 <br/>
 
     {
@@ -94,10 +119,10 @@ Optional filter:
 <br/>
 <mark>GET</mark> Through this route you can retrieve a user with a specific email: <br/>
 
-    /customerservice/customers/?{email}
+    /customerservice/customers?email={emailAddress}
 
 <br/>
-Return value:
+Example return value:
 <br/>
 
     [
@@ -141,7 +166,7 @@ Post with the value:
 <br/>
 <mark> GET</mark> You can test if the user is successfully created: <br/>
 
-    /customerservice/customers/?{email}
+    /customerservice/customers?email={emailAddress}
 <br/> 
 
 <br/>
@@ -150,7 +175,7 @@ Post with the value:
 
     /customerservice/customers/validate/email
 <br/>
-Return value:
+Example return value:
 <br/>
 
     {
@@ -160,38 +185,13 @@ Return value:
 
 <br/>
 
-Now we are going to get some orders, but before that we need to authorize first. This is how it's done. <br/>
-<mark>POST</mark> Trough this route: <br/>
-
-    /oauth/token
-
-<br/>
-Return value:
-<br/>
-    
-    {
-      "access_token": "ff501505-0248-43f8-88e7-926da0ca1ba7",
-      "token_type": not important,
-      "refresh_token": not important,
-      "expires_in": not important,
-      "scope": not important
-    }
-
-<br/>
-Now we need to add this to the headers.
-<br/>
-|Authorization   |    Bearer ff501505-0248-43f8-88e7-926da0ca1ba7|
-<br/>
-|Content-Type    |    application/json|
-<br/>
-
 <mark>GET</mark> Through this route you get the orders.
 <br/>
 
     /orderservice/orders
 
 <br/>
-Return value:
+Example return value:
 <br/>
 
     {
@@ -262,7 +262,7 @@ Return value:
     /orderservice/orders/{id}
 
 <br/>
-Return value:
+Example return value:
 <br/>
 
     {
@@ -310,7 +310,7 @@ Return value:
 
     /orderservice/orders/{id}/products
 <br/>
-Return value:
+Example return value:
 <br/>
 
     [
@@ -393,8 +393,7 @@ In the body add this as "raw" and "application/json".
       "address": "Kruisboog 42",
       "city": "Veenendaal",
       "zip": "4444ZZ"
-    },
-    "status": "VERZONDEN"
+    }
     }
 
 <br/>
