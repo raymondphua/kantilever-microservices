@@ -1,8 +1,9 @@
-package com.infosupport.team2.util;
+package builders;
 
 import com.infosupport.team2.model.Order;
 import com.infosupport.team2.model.Product;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class TestBuilders {
         return Order.builder()
                 .shippingFee(0)
                 .orderedProducts(orderedProducts)
+                .orderDate(LocalDateTime.of(2017, 12, 25, 0, 0))
                 .build();
     }
 }

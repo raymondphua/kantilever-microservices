@@ -40,6 +40,8 @@ public class Customer {
         sb.append(name.charAt(0));
         sb.append("-");
         sb.append(address.getZip());
+        sb.append("-");
+        sb.append(address.getHouseNumber());
 
         this.customerKey = sb.toString();
     }
