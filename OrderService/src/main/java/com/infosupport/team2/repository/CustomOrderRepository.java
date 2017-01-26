@@ -11,6 +11,7 @@ import java.util.Map;
  */
 public interface CustomOrderRepository {
 
-    public List<Order> filterOrders(Map<String, String> filters);
-    public List<Status> getAllStatuses();
+    List<Order> filterOrders(Map<String, String> filters);
+
+    List<Status> getAllStatuses();
 }
