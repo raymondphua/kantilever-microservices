@@ -5,27 +5,36 @@ What is it?
 ####CustomerService
 The customer service handles the requirement 4. <br />
 With this you should be able to: <br />
-* Edit customer details.
+<ul>
+    <li>Edit customer details</li>
+</ul>
+
 
 ####DeliveryService
 The delivery service handles the requirements 7, 9, 10. <br />
 With this you should be able to: <br />
-* Rate an order
-* Wrap an order 
-* Ship an order
+<ul>
+    <li>Rate an order</li>
+    <li>Wrap an order </li>
+    <li>Ship an order</li>
+</ul>
 
 ####OrderService
 The order service handles the requirements 3, 5, 6. <br />
 With this you should be able to: <br />
-* Purchase goods
-* Cancel order
-* Change/modify order
+<ul>
+    <li>Purchase goods</li>
+    <li>Cancel order</li>
+    <li>Change/modify order</li>
+</ul>
 
 ####PaymentService
 The order service handles the requirements 8, 11. <br />
 With this you should be able to: <br />
-* Adjust credit 
-* Register payment
+<ul>
+    <li>Adjust credit </li>
+    <li>Register payment</li>
+</ul>
 
 ####OrderProcessService
 This process service (composite) will be able to call the api of OrderService and InventoryService (which is not available in this project).
@@ -34,23 +43,27 @@ This process service (composite) will be able to call the api of OrderService an
 #####What is eureka?
 Eureka is a REST based service that is primarily used in the AWS cloud for locating services for the purpose of load balancing and failover of middle-tier servers. <br />
 Here we use eureka for the following purposes: <br />
-* Register of microservices 
+<ul>
+    <li>Locating microservices </li>
+</ul>
 
 ####Api-gateway
 #####What is Zuul?
 Zuul is the front door for all requests from devices and web sites to the backend of the Netflix streaming application. <br /> 
 As an edge service application, Zuul is built to enable dynamic routing, monitoring, resiliency and security. <br />
-It also has the ability to route requests to multiple Amazon Auto Scaling Groups as appropriate. <br />
 
 The Latest Version
 ------------------
-The latest version is available at (type here the website).
+The latest version and greatest.
 
-Documentation
+Technology
 -------------
-Not available yet.
+<ul> 
+    <li>Spring backend</li>
+    <li>REST</li>
+</ul>
 
-Api Examples
+API Examples
 -------------
 You can test these examples with postman or a similar application. <br/>
 
@@ -316,7 +329,7 @@ Return value:
 
 <br/>
 
-<mark>POST</mark> Through this route you can post a order. 
+<mark>POST</mark> Through this route you can post an order. 
 <br/>
     
     /orderservice/orders
@@ -385,12 +398,18 @@ In the body add this as "raw" and "application/json".
     }
 
 <br/>
-<mark>PUT</mark> Through this route you can update a order. 
+<mark>PUT</mark> Through this route you can update the status of the order. 
 <br/>
     
     /orderservice/orders/{id}
 <br/>
 In the body add this as "raw" and "application/json".
+<br/>
+
+    {
+    "status": "BESTELD"
+    }
+    
 <br/>
 You can choose from the following statussen. 
 <br/>
@@ -401,14 +420,6 @@ You can choose from the following statussen.
     <li>VERZONDEN</li>
 </ul>
 <br/>
-
-    {
-    "status": "BESTELD"
-    }
-    
-<br/>
-
-
 
 Installation
 ------------
