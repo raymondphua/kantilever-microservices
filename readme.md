@@ -57,7 +57,6 @@ Installation
 ------------
 How to run the microservice. Follow this pattern.
 
-
     Run the discovery-service. 
         wait for the service to start.
     
@@ -67,7 +66,7 @@ How to run the microservice. Follow this pattern.
     Run the api-gateway. 
         wait for the service to start.        
         
-    Run the catalog-service. 
+    Run the catalog-service. (Available in the other project)
         wait for the service to start.
     
     Run the customer-service. 
@@ -80,8 +79,8 @@ How to run the microservice. Follow this pattern.
         wait for the service to start.
    
     Run the docker webapp with the following command:
-        docker pull martidono/webapp
-        docker run -p 3000:3000 --name webapp -d docker.io/martidono/webapp
+        docker pull martidono/angularjsweb.
+        docker run -p 3000:3000 --name webapp -d docker.io/martidono/angularjsweb.
 
 
 

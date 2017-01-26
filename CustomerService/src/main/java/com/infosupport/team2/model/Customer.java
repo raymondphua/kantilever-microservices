@@ -1,9 +1,12 @@
 package com.infosupport.team2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -13,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
+@Builder
 public class Customer {
 
     @Id
@@ -21,4 +25,24 @@ public class Customer {
     private String email;
     private String phone;
     private Address address;
+
+    @Transient
+    @JsonIgnore
+    private String password;
+
+    private String customerKey;
+
+    public void generateKey() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("cst-");
+        String[] names = name.split(" ");
+        sb.append(names[names.length - 1]);
+        sb.append(name.charAt(0));
+        sb.append("-");
+        sb.append(address.getZip());
+        sb.append("-");
+        sb.append(address.getHouseNumber());
+
+        this.customerKey = sb.toString();
+    }
 }

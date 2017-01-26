@@ -38,9 +38,6 @@ import java.util.List;
 @ImportResource({"classpath*:spring-security-oauth2.xml"})
 public class AuthServerMain {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         SpringApplication.run(AuthServerMain.class, args);
     }
@@ -93,11 +90,19 @@ public class AuthServerMain {
             clientDetailService.deleteAll();
 
             testUser = new User();
-
             testUser.setEmail("pieter@hotmail.com");
             testUser.setPassword(passwordEncoder.encode("henkie"));
             testUser.setId("12");
             userService.save(testUser);
+
+            User employee = new User();
+            employee.setEmail("dennis@kantilever.nl");
+            employee.setPassword(passwordEncoder.encode("denny1"));
+            List<String> employeeRights = new ArrayList<String>();
+            employeeRights.add("employee");
+            employee.setRights(employeeRights);
+            employee.setId("16");
+            userService.save(employee);
 
             authClient = new ClientDetail();
             authClient.setId("18");
@@ -106,7 +111,7 @@ public class AuthServerMain {
             authClient.setClientSecret(passwordEncoder.encode(authClientSecret));
             authClient.setRefreshTokenValiditySeconds(4500);
             authClient.setAccessTokenValiditySeconds(4500);
-            authClient.setAuthorities(new HashSet<>(Arrays.asList("trust", "write")));
+            authClient.setAuthorities(new HashSet<>(Arrays.asList("trust", "write", "employee")));
             authClient.setAuthorizedGrantTypes(new HashSet<>(Arrays.asList("client_credentials", "authorization_code", "implicit", "password", "refresh_token")));
             authClient.setScope(new HashSet<>(Arrays.asList("trust", "read", "write")));
             authClient.setSecretRequired(true);

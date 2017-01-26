@@ -16,7 +16,7 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/oauth/**", "/oauth").permitAll().anyRequest().authenticated()
+                .antMatchers("/oauth/**", "/oauth", "/orders/date").permitAll().anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

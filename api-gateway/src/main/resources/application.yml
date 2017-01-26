@@ -1,4 +1,5 @@
 zuul:
+  retryable: true
   ignored-services: '*'
   routes:
     zuulservice:
@@ -13,12 +14,24 @@ zuul:
     customerservice:
       path: /customerservice/**
       serviceId: customer-service
-    orderprocessservice:
-      path: /orderprocessservice/**
-      serviceId: order-process-service
+    biintegrationservice:
+      path: /biintegration/**
+      serviceId: biintegration-service
+
 ribbon:
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  OkToRetryOnAllOperations: true
   eureka:
     enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
 
 server:
   port: 11130
@@ -40,6 +53,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:11140/eureka
+    eureka-server-connect-timeout-seconds: 30
   instance:
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+
 /**
  * Created by Robin on 17-1-2017.
  */
@@ -28,7 +29,6 @@ public class CustomMongoDBConvertor implements Converter<DBObject, OAuth2Authent
     private UserAuthConfigService authConfigService;
     @Autowired
     private ClientDetailService clientDetailService;
-
 
 
     @Override
