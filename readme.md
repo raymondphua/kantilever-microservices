@@ -52,6 +52,8 @@ API Examples
 -------------
 You can test these examples with postman or a similar application. <br/>
 
+
+#####Authentication Service
 IMPORTANT: Only if you get a 401 status code (unauthorized) you should execute these steps. 
 <br/>
 <mark>POST</mark> Trough this route: <br/>
@@ -92,6 +94,10 @@ Now we need to add this to the headers of our request.
 <br/>
 |Content-Type    |    application/json|
 <br/>
+
+<br/>
+
+#####Customer Service
 <br/>
 <mark>GET</mark> Through this route you can retrieve the user information: <br/>
 
@@ -185,6 +191,8 @@ Example return value:
 
 <br/>
 
+#####Order Service
+<br/>
 <mark>GET</mark> Through this route you get the orders.
 <br/>
 
