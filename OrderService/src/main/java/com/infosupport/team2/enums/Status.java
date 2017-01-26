@@ -8,12 +8,17 @@ public enum Status {
 
     @Override
     public String toString() {
-        switch(this) {
-            case BESTELD: return "Besteld";
-            case IN_BEHANDELING: return "In Behandeling";
-            case INGEPAKT: return "Ingepakt";
-            case VERZONDEN: return "Verzonden";
-            default: return "Onbekend status";
+        switch (this) {
+            case BESTELD:
+                return "Besteld";
+            case IN_BEHANDELING:
+                return "In Behandeling";
+            case INGEPAKT:
+                return "Ingepakt";
+            case VERZONDEN:
+                return "Verzonden";
+            default:
+                return "Onbekend status";
         }
     }
 }

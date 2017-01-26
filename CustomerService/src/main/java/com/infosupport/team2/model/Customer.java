@@ -1,7 +1,6 @@
 package com.infosupport.team2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,11 +32,11 @@ public class Customer {
 
     private String customerKey;
 
-    public void generateKey(){
+    public void generateKey() {
         StringBuilder sb = new StringBuilder();
         sb.append("cst-");
         String[] names = name.split(" ");
-        sb.append(names[names.length-1]);
+        sb.append(names[names.length - 1]);
         sb.append(name.charAt(0));
         sb.append("-");
         sb.append(address.getZip());

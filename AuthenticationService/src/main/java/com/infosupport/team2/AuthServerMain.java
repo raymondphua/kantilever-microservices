@@ -38,9 +38,6 @@ import java.util.List;
 @ImportResource({"classpath*:spring-security-oauth2.xml"})
 public class AuthServerMain {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         SpringApplication.run(AuthServerMain.class, args);
     }

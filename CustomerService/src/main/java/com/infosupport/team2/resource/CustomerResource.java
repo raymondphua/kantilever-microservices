@@ -2,7 +2,6 @@ package com.infosupport.team2.resource;
 
 import com.infosupport.team2.model.Customer;
 import com.infosupport.team2.service.CustomerService;
-import com.infosupport.team2.serviceCaller.AuthServiceCaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +23,8 @@ public class CustomerResource {
     @Autowired
     CustomerService customerService;
 
-    @Autowired
-    private AuthServiceCaller authServiceCaller;
-
     @RequestMapping(method = RequestMethod.GET)
-    public List<Customer> getAllCustomers(@RequestParam Map<String,String> allRequestParams) {
+    public List<Customer> getAllCustomers(@RequestParam Map<String, String> allRequestParams) {
         return customerService.getAllCustomers(allRequestParams);
     }
 
@@ -42,7 +38,7 @@ public class CustomerResource {
         customerService.createCustomer(customer);
 
         URI location = URI.create(ServletUriComponentsBuilder
-                 .fromHttpUrl(REDIRECT_URL).toUriString());
+                .fromHttpUrl(REDIRECT_URL).toUriString());
         return ResponseEntity.created(location).build();
     }
 }

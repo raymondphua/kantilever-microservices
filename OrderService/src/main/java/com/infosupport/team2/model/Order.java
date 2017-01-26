@@ -24,7 +24,7 @@ import java.util.List;
 @Document(collection = "orders")
 public class Order {
 
-    public Order(Long id, double shippingFee, double totalPrice, Customer customer, List<Product> orderedProducts, Address deliveryAddress, Address invoiceAddress, Status status, LocalDateTime orderDate){
+    public Order(Long id, double shippingFee, double totalPrice, Customer customer, List<Product> orderedProducts, Address deliveryAddress, Address invoiceAddress, Status status, LocalDateTime orderDate) {
         this.id = id;
         this.shippingFee = shippingFee;
         this.totalPrice = totalPrice;
@@ -52,7 +52,7 @@ public class Order {
     @DateTimeFormat(pattern = "YYYY-MM-dd HH:mm")
     private LocalDateTime orderDate;
 
-    public void generateKey(int order){
+    public void generateKey(int order) {
         StringBuilder sb = new StringBuilder();
         sb.append("ord-");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");

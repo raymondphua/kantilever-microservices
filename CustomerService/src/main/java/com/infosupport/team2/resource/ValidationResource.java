@@ -18,7 +18,7 @@ public class ValidationResource {
     @Autowired
     CustomerService customerService;
 
-    @RequestMapping(value="/email", method = RequestMethod.POST)
+    @RequestMapping(value = "/email", method = RequestMethod.POST)
     public ValidationModel emailExists(@RequestBody ValidationModel validationModel) {
         validationModel.setValid(customerService.emailExists(validationModel.getEmail()));
         return validationModel;
